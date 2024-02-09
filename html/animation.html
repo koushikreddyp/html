@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var img = null;
+        function init(){
+            img = document.getElementById('myimg');
+            img.style.position = 'relative';
+            img.style.left = '50px;'
+        }
+
+        function moveright(){
+            img.style.position = parseInt(
+            img.style.left) + 100 + 'px';
+        }
+        function moveleft(){
+            img.style.position = parseInt(
+            img.style.left) - 100 + 'px';
+        }
+        window.onload =init;
+    </script>
+</head>
+<body>
+    <form>
+        <img id="myimg" src="/Users/koushik/Desktop/1699629338303.jpeg">
+        <center>
+            <p>Click the below button to move image right</p>
+            <input type = "button" value="Click Me" onclick="moveright();" />
+            <p>Click the below button to move image left</p>
+            <input type = "button" value="Click Me" onclick="moveleft();" />
+        </center>
+        function myfunction(){
+            
+        }
+    </form>
+</body>
+</html>

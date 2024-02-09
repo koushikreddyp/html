@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation and Welcome Message</title>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span class="error" id="nameError"></span><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="emailError"></span><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required minlength="8">
+        <span class="error" id="passwordError"></span><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="welcomeMessage" style="display: none;"></div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            let isValid = true;
+
+            // Validate name
+            if (name.trim() === "") {
+                document.getElementById("nameError").innerHTML = "Name is required.";
+                isValid = false;
+            } else if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(name)) {
+                document.getElementById("nameError").innerHTML = "Name must contain only letters.";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+
+            // Validate email
+            if (!/^[a-zA-Z0-9.!#$%&'*+/-=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+                document.getElementById("emailError").innerHTML = "Invalid email format.";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+
+            // Validate password
+            if (password.length < 8) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 8 characters long.";
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+
+            if (isValid) {
+                setTimeout(() => { // Use setTimeout for delay
+                    document.getElementById("welcomeMessage").innerHTML = "Welcome, " + name + "!";
+                    document.getElementById("welcomeMessage").style.display = "block";
+                }, 2000); // Customize delay (ms)
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
